@@ -190,24 +190,28 @@ export const ReimburstmentPlans = [
       title: 'Medical Coverage',
       description: 'Comprehensive medical coverage for all employees.',
       shortDescription: 'Claim up to $150 per medical expense.',
+    cost:"900"
     },
     {
       id: 2,
       title: 'Dental Care',
       description: 'Coverage for regular dental check-ups and treatments.',
       shortDescription: 'Claim up to $100 for dental expenses annually.',
+    cost:"100"
     },
     {
       id: 3,
       title: 'Vision Insurance',
       description: 'Coverage for eye exams, glasses, and contact lenses.',
       shortDescription: 'Claim up to $200 for vision-related expenses.',
+    cost:"600"
     },
     {
       id: 4,
       title: 'Life Insurance',
       description: 'Provides financial security to employees and their families in case of unforeseen events.',
       shortDescription: 'Coverage includes a payout of $50,000 in case of death or disability.',
+    cost:"200"
     },
   ];
   

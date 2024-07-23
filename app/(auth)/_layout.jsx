@@ -9,7 +9,7 @@ const AuthLayout = () => {
         screenOptions={{
         tabBarShowLabel: false,
         headerShown: false
-    }}>
+    }} >
         <Stack.Screen
             name='login'
             options={{

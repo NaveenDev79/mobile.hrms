@@ -19,9 +19,12 @@ const RootLayout = () => {
          <Stack.Screen name='(tabs)' options={{
             headerShown:false
         }} />
-         {/* <Stack.Screen name='(employee)' options={{
+         <Stack.Screen name='(admin)' options={{
             headerShown:false
-        }} /> */}
+        }} />    
+        <Stack.Screen name='(employee)' options={{
+            headerShown:false
+        }} />  
           
     </Stack>
      </>)

@@ -26,7 +26,7 @@ const MainLayout = () => {
           tabBarShowLabel:false,
           tabBarStyle:{
             padding:2,
-            height:84
+            height:74
           }
 
         }}>
@@ -38,7 +38,7 @@ const MainLayout = () => {
                 tabBarIcon: ({color, focused}) => (<TabIcon icon={icons?.home} color={color} name="Home" focused={focused}/>)
             }}/>
             <Tabs.Screen
-                name="Service"
+                name="emp-services"
                 options={{
                 title: "Service",
                 headerShown: false,
