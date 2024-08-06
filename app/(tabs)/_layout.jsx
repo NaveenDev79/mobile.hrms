@@ -22,41 +22,60 @@ const TabIcon = ({icon, color, name, focused}) => {
 const MainLayout = () => {
     return (
         <Tabs
-        screenOptions={{
-          tabBarShowLabel:false,
-          tabBarStyle:{
-            padding:2,
-            height:74
-          }
-
+            screenOptions={{
+            tabBarShowLabel: false,
+            tabBarStyle: {
+                padding: 1,
+                height: 74
+            }
         }}>
             <Tabs.Screen
-                name="Home" 
+                name="Home"
                 options={{
                 title: "Home",
                 headerShown: false,
-                tabBarIcon: ({color, focused}) => (<TabIcon icon={icons?.home} color={color} name="Home" focused={focused}/>)
+                tabBarIcon: ({color, focused}) => (<TabIcon
+                    icon={icons
+                    ?.home}
+                    color={color}
+                    name="Home"
+                    focused={focused}/>)
             }}/>
             <Tabs.Screen
                 name="emp-services"
                 options={{
                 title: "Service",
                 headerShown: false,
-                tabBarIcon: ({color, focused}) => (<TabIcon icon={icons?.service} color={color} name="Service" focused={focused}/>)
+                tabBarIcon: ({color, focused}) => (<TabIcon
+                    icon={icons
+                    ?.service}
+                    color={color}
+                    name="Service"
+                    focused={focused}/>)
             }}/>
             <Tabs.Screen
-                name="Approval"
+                name="emp-approvals"
                 options={{
                 title: "Approval",
                 headerShown: false,
-                tabBarIcon: ({color, focused}) => (<TabIcon icon={icons?.approval} color={color} name="Approval" focused={focused}/>)
+                tabBarIcon: ({color, focused}) => (<TabIcon
+                    icon={icons
+                    ?.approval}
+                    color={color}
+                    name="Approval"
+                    focused={focused}/>)
             }}/>
             <Tabs.Screen
-                name="Profile"
+                name="emp-profile"
                 options={{
                 title: "Profile",
                 headerShown: false,
-                tabBarIcon: ({color, focused}) => (<TabIcon icon={icons?.profile} color={color} name="Profile" focused={focused}/>)
+                tabBarIcon: ({color, focused}) => (<TabIcon
+                    icon={icons
+                    ?.profile}
+                    color={color}
+                    name="Profile"
+                    focused={focused}/>)
             }}/>
         </Tabs>
     )

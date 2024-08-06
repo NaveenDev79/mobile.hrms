@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { icons } from '../constants/index';
+import { AntDesign } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 const LeaveComponent = ({ item }) => {
+
+    const router = useRouter();
     const getStatusColor = (status) => {
         switch (status) {
             case 'Approved':
@@ -16,20 +20,24 @@ const LeaveComponent = ({ item }) => {
         }
     };
 
+    function handleTouch(){
+        router.push(`emp-approvals/leave/${item.id}`)
+    }
+
     return (
         <View className="bg-white p-4 mb-4 rounded-lg shadow-md">
             <View className="flex flex-row justify-between items-center mb-2">
-                <Text className="text-lg font-bold">{item.title}</Text>
+                <Text className="text-base font-medium">{item.title}</Text>
                 <View className={`px-2 py-1 rounded-full ${getStatusColor(item.status)}`}>
-                    <Text className="text-white font-bold text-xs uppercase">{item.status}</Text>
+                    <Text className="text-white font-light text-xs uppercase">{item.status}</Text>
                 </View>
             </View>
             <View>
-                <Text className="text-sm text-gray-600">Applied on {item.appliedOn}</Text>
+                <Text className="text-base text-gray-600">Applied on {item.appliedOn}</Text>
                 <View className="flex flex-row justify-between items-center mt-2">
-                    <Text className="text-base font-semibold">{item.type}</Text>
-                    <TouchableOpacity className="p-2 border-2 border-gray-400 rounded-full">
-                        <Image className="w-6 h-6" resizeMode='contain' source={icons.right} />
+                    <Text className="text-base font-light">{item.type}</Text>
+                    <TouchableOpacity className="" onPress={handleTouch}>
+                    <AntDesign name="rightcircleo" size={28} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>

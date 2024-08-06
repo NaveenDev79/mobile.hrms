@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Link} from 'expo-router';
+import {Link, Redirect, router, useRouter} from 'expo-router';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import AuthBanner from '../../components/AuthBanner';
-import {SelectList} from 'react-native-dropdown-select-list';
-import {signupRequest} from '../../api/auth';
-import { showMessage } from "react-native-flash-message";
+import {SelectList} from 'react-native-dropdown-select-list'; 
+import axios from 'axios';
 
 const RegisterScreen = () => {
     const [form,
@@ -22,26 +21,29 @@ const RegisterScreen = () => {
         }));
     };
 
+    const router = useRouter();
+
     const handleFormSubmit = async() => {
+        console.log(form);
+        
         setLoading(true);
         setError(null);
 
         try {
             form.role = selected;
-            const res = await signupRequest(form);
-            console.log("Signup response:", res); 
-            showMessage({
-                message: res.message,
-                description: "This is our second message",
-                type: "success",
-              });
+            const {data} = await axios.post('http://192.168.111.110:8080/api/v1/auth/signup',form) ;
+            if(data.success){
+                console.log(data.message);
+                setForm({email: "", name: "", password: "", role: "Employee"});
+                router.push('/login')
+                
+            }console.log(data.message);
+
+             
         } catch (error) {
             setError("Failed to sign up. Please try again."); 
-            showMessage({
-                message: error.message,
-                description: "This is our second message",
-                type: "error",
-              });
+            console.log(error.message);
+            
         } finally {
             setLoading(false);
         }

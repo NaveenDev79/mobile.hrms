@@ -8,8 +8,7 @@ export const LeaveData = [
         fromDate: '2024-07-02',
         toDate: '2024-07-05',
         status: 'In-review'
-    },
-    {
+    }, {
         id: 2,
         title: 'Leave Application',
         reason: 'Vacation',
@@ -18,8 +17,7 @@ export const LeaveData = [
         fromDate: '2024-07-10',
         toDate: '2024-07-20',
         status: 'Approved'
-    },
-    {
+    }, {
         id: 3,
         title: 'Leave Application',
         reason: 'Family event',
@@ -28,8 +26,7 @@ export const LeaveData = [
         fromDate: '2024-07-12',
         toDate: '2024-07-14',
         status: 'In-review'
-    },
-    {
+    }, {
         id: 4,
         title: 'Leave Application',
         reason: 'Rest and relaxation',
@@ -38,8 +35,7 @@ export const LeaveData = [
         fromDate: '2024-07-15',
         toDate: '2024-07-19',
         status: 'Approved'
-    },
-    {
+    }, {
         id: 5,
         title: 'Leave Application',
         reason: 'Personal reasons',
@@ -48,8 +44,7 @@ export const LeaveData = [
         fromDate: '2024-07-20',
         toDate: '2024-07-22',
         status: 'Rejected'
-    },
-    {
+    }, {
         id: 6,
         title: 'Leave Application',
         reason: 'Doctor appointment',
@@ -58,8 +53,7 @@ export const LeaveData = [
         fromDate: '2024-07-13',
         toDate: '2024-07-13',
         status: 'Approved'
-    },
-    {
+    }, {
         id: 7,
         title: 'Leave Application',
         reason: 'Maternity leave',
@@ -68,8 +62,7 @@ export const LeaveData = [
         fromDate: '2024-08-01',
         toDate: '2024-12-01',
         status: 'In-review'
-    },
-    {
+    }, {
         id: 8,
         title: 'Leave Application',
         reason: 'Paternity leave',
@@ -78,8 +71,7 @@ export const LeaveData = [
         fromDate: '2024-07-20',
         toDate: '2024-08-10',
         status: 'Approved'
-    },
-    {
+    }, {
         id: 9,
         title: 'Leave Application',
         reason: 'Relocation',
@@ -88,8 +80,7 @@ export const LeaveData = [
         fromDate: '2024-07-25',
         toDate: '2024-07-30',
         status: 'Rejected'
-    },
-    {
+    }, {
         id: 10,
         title: 'Leave Application',
         reason: 'Bereavement',
@@ -109,72 +100,63 @@ export const ReimbursementData = [
         status: 'In-review',
         claimedDate: '2024-07-01',
         reason: 'Travel expenses for conference'
-    },
-    {
+    }, {
         id: 2,
         title: 'Office Supplies',
         cost: 150,
         status: 'Approved',
         claimedDate: '2024-07-03',
         reason: 'Office supplies'
-    },
-    {
+    }, {
         id: 3,
         title: 'Client Meeting Lunch',
         cost: 400,
         status: 'Rejected',
         claimedDate: '2024-07-05',
         reason: 'Client meeting lunch'
-    },
-    {
+    }, {
         id: 4,
         title: 'Parking Fees',
         cost: 75,
         status: 'In-review',
         claimedDate: '2024-07-08',
         reason: 'Parking fees'
-    },
-    {
+    }, {
         id: 5,
         title: 'Business Trip Expenses',
         cost: 300,
         status: 'Approved',
         claimedDate: '2024-07-10',
         reason: 'Hotel stay for business trip'
-    },
-    {
+    }, {
         id: 6,
         title: 'Training Session Expenses',
         cost: 500,
         status: 'In-review',
         claimedDate: '2024-07-12',
         reason: 'Airfare for training session'
-    },
-    {
+    }, {
         id: 7,
         title: 'Software Purchase',
         cost: 100,
         status: 'Approved',
         claimedDate: '2024-07-15',
         reason: 'Software purchase'
-    },
-    {
+    }, {
         id: 8,
         title: 'Team Building Activity',
         cost: 200,
         status: 'Rejected',
         claimedDate: '2024-07-18',
         reason: 'Team building activity'
-    },
-    {
+    }, {
         id: 9,
         title: 'Local Transport',
         cost: 50,
         status: 'Approved',
         claimedDate: '2024-07-20',
         reason: 'Local transport'
-    },
-    {
+    }, {
         id: 10,
         title: 'Professional Development',
         cost: 350,
@@ -186,32 +168,28 @@ export const ReimbursementData = [
 
 export const ReimburstmentPlans = [
     {
-      id: 1,
-      title: 'Medical Coverage',
-      description: 'Comprehensive medical coverage for all employees.',
-      shortDescription: 'Claim up to $150 per medical expense.',
-    cost:"900"
-    },
-    {
-      id: 2,
-      title: 'Dental Care',
-      description: 'Coverage for regular dental check-ups and treatments.',
-      shortDescription: 'Claim up to $100 for dental expenses annually.',
-    cost:"100"
-    },
-    {
-      id: 3,
-      title: 'Vision Insurance',
-      description: 'Coverage for eye exams, glasses, and contact lenses.',
-      shortDescription: 'Claim up to $200 for vision-related expenses.',
-    cost:"600"
-    },
-    {
-      id: 4,
-      title: 'Life Insurance',
-      description: 'Provides financial security to employees and their families in case of unforeseen events.',
-      shortDescription: 'Coverage includes a payout of $50,000 in case of death or disability.',
-    cost:"200"
-    },
-  ];
-  
+        id: 1,
+        title: 'Medical Coverage',
+        desc: 'Comprehensive medical coverage for all employees.',
+        amount: "900"
+    }, {
+        id: 2,
+        title: 'Dental Care',
+        desc: 'Coverage for regular dental check-ups and treatments.',
+
+        amount: "100"
+    }, {
+        id: 3,
+        title: 'Vision Insurance',
+        desc: 'Coverage for eye exams, glasses, and contact lenses.',
+
+        amount: "600"
+    }, {
+        id: 4,
+        title: 'Life Insurance',
+        desc: 'Provides financial security to employees and their families in case of unforesee' +
+                'n events.',
+
+        amount: "200"
+    }
+];

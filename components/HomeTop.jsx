@@ -1,59 +1,95 @@
 import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import {icons, images} from '../constants/index';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { setCheckIn, setCheckOut } from '../redux-store/attendenceSlice';
 
-const HomeTop = () => {
+
+const HomeMessage = () => {
     return (
-        <View className="flex my-2 items-center bg-white p-2 rounded-lg flex-row">
-            <View className="">
-                <Text className="font-bold capitalize text-xl">update</Text>
-                <Text className="text-lg my-2">is simply dummy text of the printing & typesetting industry.</Text>
+        <View className="flex my-2 items-center bg-white p-2 rounded-sm shadow-2xl flex-row">
+            <View className="w-3/4">
+                <Text className="font-medium capitalize text-[#324467] text-xl">update</Text>
+                <Text className="text-base my-2">is simply dummy text of the printing &  industry.</Text>
             </View>
             <Image
-                className="absolute w-32 h-32 bottom-20  right-0"
+                className="absolute w-32 h-32 -top-8  right-0"
                 source={images.homeTop}/>
         </View>
     )
 }
 
-export const HomeNav = () => {
+export const HomeHeading = () => {
+
+    const user = useSelector((state)=>state.auth.user);
     return (
-        <View className="flex my-2 items-center bg-white p-2 rounded-lg flex-row">
+        <View className="flex items-center bg-white p-2 rounded-sm flex-row">
             <Image
                 source={images.profilePicture}
                 className="w-16 h-16 rounded-full border-4 shadow-3xl border-slate-700"/>
-            <Text className="text-2xl font-black ml-4">Hello! Employee</Text>
+            <Text className="text-2xl font-semibold text-[#324467] ml-4">Hello! {user?.name}</Text>
         </View>
     )
 }
 
-export const HomeBody = () => {
+export const Attendence = () => {
+    const [startTime, setStartTime] = useState(null);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [timerInterval, setTimerInterval] = useState(null);
+
+    const { isChecked, checkinTime, checkInForToday, checkoutTime } = useSelector((state) => state.attendence);
+    const dispatch = useDispatch();
+
+    // useEffect(() => {x
+
+    function handleCheckIn() {
+        const todaysDate = new Date();
+        setStartTime(todaysDate); // Set start time for the timer
+        dispatch(setCheckIn(todaysDate));
+    }
+
+    function handleCheckOut() {
+        const todaysDate = new Date();
+        setStartTime(null); // Stop the timer
+        dispatch(setCheckOut(todaysDate));
+    }
+
+    const formatTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    };
+
     return (
-        <View className='flex-1 my-2'>
+        <View className='flex-1 rounded-sm'>
             <ImageBackground
                 source={images.tbanner}
                 resizeMode="contain"
                 className='h-96 w-full'>
-                <View className='flex flex-row items-center justify-evenly pt-40'>
-                    <Text className='text-xl p-2 rounded-lg bg-red-300'>00</Text>
-                    <Text className='text-xl p-2 rounded-lg bg-red-300'>00</Text>
-                    <Text className='text-xl p-2 rounded-lg bg-red-300'>00</Text>
-                    <Text className='text-xl'>HRS</Text>
+                <View className='flex flex-row items-center justify-center gap-4 pt-40'>
+                    <Text className='text-base p-2 text-white rounded-lg bg-orange-400'>{formatTime(elapsedTime)}</Text>
+                    <Text className='text-base p-2 text-white rounded-lg bg-orange-400'>{formatTime(elapsedTime)}</Text>
+                    <Text className='text-base p-2 text-white rounded-lg bg-orange-400'>{formatTime(elapsedTime)}</Text>
+                    <Text className='text-base'>HRS</Text>
                 </View>
-
-                <View className='border-b border-gray-300 my-4'/>
-
-                <Text className='text-center text-lg'>GENERAL 09:00 AM TO 06:00 PM</Text>
+                <View className='border-b border-gray-300 my-4' />
+                <Text className='text-center text-base'>GENERAL 09:00 AM TO 06:00 PM</Text>
 
                 <View className='mt-4 items-center'>
-                    <TouchableOpacity className='bg-blue-500 w-2/4  p-4 rounded-[122px]'>
-                        <Text className='text-white text-center text-lg'>CHECK IN</Text>
-                    </TouchableOpacity>
+                    {!isChecked
+                        ? (<TouchableOpacity disabled={checkInForToday} onPress={handleCheckIn} className='bg-blue-500 w-2/4 p-2 rounded-[122px]'>
+                            <Text className='text-white text-center text-base'>CHECK IN</Text>
+                        </TouchableOpacity>)
+                        : (<TouchableOpacity onPress={handleCheckOut} className='bg-blue-500 w-2/4 p-2 rounded-[122px]'>
+                            <Text className='text-white text-center text-base'>CHECK OUT</Text>
+                        </TouchableOpacity>)
+                    }
                 </View>
             </ImageBackground>
         </View>
-
-    )
-}
+    );
+};
 
 export const HomeBottom = () => {
     return (
@@ -74,4 +110,4 @@ export const HomeBottom = () => {
         </View>
     )
 }
-export default HomeTop
+export default HomeMessage

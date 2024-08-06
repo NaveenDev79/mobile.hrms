@@ -5,48 +5,54 @@ import {Ionicons} from '@expo/vector-icons'
 import {useRouter} from 'expo-router'
 import {MaterialIcons} from '@expo/vector-icons';
 import {ReimburstmentPlans} from '../../../constants/data'
+import {NavigateToBack} from '../../../components/Utils'
 
 const Reimburstment = () => {
 
     const router = useRouter();
+    function handleNavigate(id){
+        console.log(id);
+        router.push(
+            {
+                pathname: `emp-services/${id}`,
+                params: {
+                  id:id
+                }
+             }
+        )
+        
+        
+
+    }
     return (
         <TopLayout bg='#3399' title='' isTop={false}>
-            <View className='flex flex-row justify-between gap-1 my-2 items-center'>
-                <TouchableOpacity onPress={() => router.back()}>
-                    <Ionicons name="arrow-back" size={34} color="#3399"/>
-                </TouchableOpacity>
-                <Text className='text-xl font-black'>Reimbursement claim</Text>
-                <TouchableOpacity onPress={() => console.log('added')}>
-                    <MaterialIcons name="add-box" size={34} color="#3399"/>
-                </TouchableOpacity>
-            </View>
+            <NavigateToBack
+                title="Reimbursement claim"
+                onNext={() => router.push('emp-services/apply-reimburstment')}
+                Icon={<MaterialIcons name = "add-box" size={32} color="#5F66E1"/>}/> 
             {/* Body */}
             <View>
-                {ReimburstmentPlans.map((item) =>< Compo item = {
-                    item
-                }
-                key = {
-                    item.id
-                } />)
-}
+                {ReimburstmentPlans.map((item) =><ReimburstmentItem item={item}
+                key={item.id} onNavigate={()=>handleNavigate(item.id)} />)}
             </View>
         </TopLayout>
     )
 }
 
-export const Compo = ({item}) => {
+export const ReimburstmentItem = ({item,onNavigate}) => {
+    
     return (
         <View className='flex flex-row my-2 p-2 bg-white rounded-md justify-between'>
             <View className='flex-3/4 '>
-                <Text className='text-lg font-semibold'>{item.title}</Text>
-                <Text className='text-base'>Claim upto $ {item.cost}</Text>
+                <Text className='text-lg font-medium'>{item.title}</Text>
+                <Text className='text-base font-light'>Claim upto $ {item.amount}</Text>
             </View>
             <View className='flex-1/4 items-center  flex flex-row gap-2 '>
-                <Text className='p-2 bg-slate-900 text-white  rounded-md text-base '>Raise claim</Text>
+                <Text className='p-1 bg-[#5F66E1] text-white font-light  rounded-md text-base '>Raise claim</Text>
                 <TouchableOpacity
-                    className="bg-slate-950 rounded-md "
-                    onPress={() => console.log('1')}>
-                    <Ionicons name="arrow-forward-outline" size={34} color="#FFF"/>
+                    className="bg-[#5F66E1] rounded-md "
+                    onPress={onNavigate}>
+                    <Ionicons name="arrow-forward-outline" size={30} color="#FFF"/>
                 </TouchableOpacity>
             </View>
         </View>

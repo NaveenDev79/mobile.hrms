@@ -1,33 +1,39 @@
 import {StyleSheet, Text, View} from 'react-native'
-import {Slot, Stack} from 'expo-router'
-import { useFonts } from 'expo-font' 
+import {Slot, Stack} from 'expo-router';
+import {ProviderStore} from '../redux-store/Provider';
 
 const RootLayout = () => {
 
-    const [fontsLoaded, error] = useFonts({
-        "name":"path"
+    return (   <ProviderStore>
+        <Stack >
+            <Stack.Screen
+                name='index'
+                options={{
+                headerShown: false
+            }}/>
+            <Stack.Screen
+                name='(auth)'
+                options={{
+                headerShown: false
+            }}/>
+            <Stack.Screen
+                name='(tabs)'
+                options={{
+                headerShown: false
+            }}/>
+            <Stack.Screen
+                name='(admin)'
+                options={{
+                headerShown: false
+            }}/>
+            <Stack.Screen
+                name='(employee)'
+                options={{
+                headerShown: false
+            }}/>
 
-    })
-    return ( <> 
-    <Stack >
-        <Stack.Screen name='index' options={{
-            headerShown:false
-        }} />
-        <Stack.Screen name='(auth)' options={{
-            headerShown:false
-        }} />
-         <Stack.Screen name='(tabs)' options={{
-            headerShown:false
-        }} />
-         <Stack.Screen name='(admin)' options={{
-            headerShown:false
-        }} />    
-        <Stack.Screen name='(employee)' options={{
-            headerShown:false
-        }} />  
-          
-    </Stack>
-     </>)
+        </Stack>
+    </ProviderStore>  )
 }
 
 export default RootLayout

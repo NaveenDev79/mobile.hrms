@@ -24,6 +24,11 @@ const Layout = () => {
                 options={{
                 headerShown: false
             }}/>
+            <Stack.Screen
+                name='apply-reimburstment'
+                options={{
+                headerShown: false
+            }}/>
         </Stack>
     )
 }
