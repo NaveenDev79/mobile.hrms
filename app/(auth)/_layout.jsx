@@ -1,7 +1,6 @@
 import {View, Text, SafeAreaView, ScrollView} from 'react-native'
 import React from 'react'
-import {Slot, Stack} from 'expo-router'
-import {StatusBar} from 'expo-status-bar'
+import {Slot, Stack} from 'expo-router' 
 
 const AuthLayout = () => {
     return ( <> 

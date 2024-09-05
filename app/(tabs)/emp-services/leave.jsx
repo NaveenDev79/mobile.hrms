@@ -8,6 +8,8 @@ import { ActionButtons } from '../../../components/Buttons';
 import { Container } from '../../../components/Layout';
 import dayjs from 'dayjs';
 import { HRLINE } from '../../../components/Utils';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Leave = () => {
   const router = useRouter();
@@ -18,6 +20,8 @@ const Leave = () => {
     from: dayjs().startOf('').toDate('YYYY-MM-DD'),
   });
   const todaysDate = dayjs().toDate('YYYY-MM-DD');
+  const token = useSelector((state)=>state.auth.token); 
+  
 
   const handleInputChange = (name, value) => {
     setLeaveData({
@@ -26,19 +30,31 @@ const Leave = () => {
     });
   };
 
-  const onSubmitHandler = () => {
-    const formData = {
+  const onSubmitHandler = async() => {
+    const formData = { 
         ...leaveData,
         from: dayjs(leaveData.from).format('YYYY-MM-DD'),
         to: dayjs(leaveData.to).format('YYYY-MM-DD'),
         days:calculateDateDifference(leaveData.from, leaveData.to),
-      };
-       
-      try {
-        console.log('leave data added');
-        showSuccess(() => {
-          router.push('/emp-services/Service');
-        });
+      }; 
+      try { 
+        const {data} = await axios.post('/leave',formData,{
+          headers:{
+            token:token
+          }
+        }); 
+        if(data.success){
+          showSuccess( message=data.message,()=>{
+            router.push('emp-services/Service')
+          });
+          setLeaveData({
+            type: '',
+            cause: '',
+            to: dayjs().startOf('').toDate('YYYY-MM-DD') ,
+            from: dayjs().startOf('').toDate('YYYY-MM-DD'),
+          });
+        }
+        Alert.alert('Error', data.message);
       } catch (error) {
         Alert.alert('Error', error.message);
       }

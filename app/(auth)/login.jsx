@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, StatusBar,Alert } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import axios from 'axios'; // Make sure to import axios 
 import FormField from '../../components/FormField';
 import AuthBanner from '../../components/AuthBanner';
 import CustomButton from '../../components/CustomButton';
 import { setLoggedIn } from '../../redux-store/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from "react-redux";
+import { setAttendenceInitial } from '../../redux-store/attendenceSlice';
 
 const LoginScreen = () => { 
     const [form, setForm] = useState({ email: "", password: "", role: "Employee" });
@@ -22,30 +24,44 @@ const LoginScreen = () => {
         }));
     };
 
+    async function fetchAttendance(token) {
+        try {
+            const { data } = await axios.get('/attendence/today', {
+                headers: {
+                    token:token
+                }
+            });
+
+            if (data.success) {
+                dispatch(setAttendenceInitial(data.data));
+            } 
+        } catch (error) {
+            // Alert.alert('Error', error.message);
+        }
+    }
+
     const handleFormSubmit = async () => {
         setLoading(true);
         setError(null);
 
         try { 
-            const response = await axios.post('http://192.168.111.110:8080/api/v1/auth/signin', form);
-            if (response.data.success) {
-                console.log(response.data.message);
+            const response = await axios.post('/auth/signin', form);
+            if (response.data.success) { 
                 const user = response.data.user;
-                setForm({ email: "", password: ""});
+                const token = response.data.token;
+                setForm({ email: "", password: "" });
 
                 // Dispatch action to update Redux store
-                dispatch(setLoggedIn(user));
-
+                dispatch(setLoggedIn({ user, token }));
+                await AsyncStorage.setItem('@auth', JSON.stringify({ user, token }));
+                
                 // Navigate based on the user's role
-                if (user.role === 'HR Admin') {
-                    router.push('/hr'); 
-                } else if (user.role === 'General Admin') {
-                    router.push('/admin'); 
+                if (user.role === 'Employee') {
+                    router.push('emp-home/home-emp');
                 } else {
-                    router.push('/Home');
-                }
+                    router.push('/admin-home'); 
+                } 
             } else {
-                console.log(response.data.message);
                 setError(response.data.message || "Failed to sign in. Please try again.");
             }
         } catch (error) {
@@ -69,9 +85,7 @@ const LoginScreen = () => {
                             title="Email"
                             placeholder="Enter your email"
                             value={form.email}
-                            onChange={(text) => { 
-                                handleFormChange('email', text)
-                            }}
+                            onChange={(text) => handleFormChange('email', text)}
                             keyboardType="email-address"
                         />
                         <FormField

@@ -17,7 +17,7 @@ const ReimbursementComponent = ({ item }) => {
 
   
   function handleTouch(){
-    router.push(`emp-approvals/${item.id}`)
+    router.push(`emp-approvals/${item._id}`)
 }
 
   return (

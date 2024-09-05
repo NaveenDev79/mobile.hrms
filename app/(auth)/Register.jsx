@@ -24,25 +24,22 @@ const RegisterScreen = () => {
     const router = useRouter();
 
     const handleFormSubmit = async() => {
-        console.log(form);
-        
+        form.role = selected;        
         setLoading(true);
         setError(null);
 
         try {
             form.role = selected;
-            const {data} = await axios.post('http://192.168.111.110:8080/api/v1/auth/signup',form) ;
-            if(data.success){
-                console.log(data.message);
+            const {data} = await axios.post('/auth/signup',form) ;
+            if(data.success){ 
                 setForm({email: "", name: "", password: "", role: "Employee"});
                 router.push('/login')
                 
-            }console.log(data.message);
+            }
 
              
         } catch (error) {
-            setError("Failed to sign up. Please try again."); 
-            console.log(error.message);
+            setError("Failed to sign up. Please try again.");  
             
         } finally {
             setLoading(false);

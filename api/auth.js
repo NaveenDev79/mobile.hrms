@@ -1,6 +1,7 @@
 // api/auth.js
 import axios from "axios";
 import { baseURL } from "../app";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function signupRequest(form) {
     try {
@@ -11,4 +12,12 @@ export async function signupRequest(form) {
         console.log(error);
         throw error;  
     }
+}
+
+export async function getLocalStorageData() {
+
+    let data = await AsyncStorage.getItem('@auth');
+    const userData = JSON.parse(data);  
+    
+    return userData;
 }

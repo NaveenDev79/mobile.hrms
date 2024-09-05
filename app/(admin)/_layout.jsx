@@ -19,7 +19,7 @@ const TabIcon = ({icon, color, name, focused}) => {
     )
 }
 
-const AdminLayout = () => {
+const RootAdminLayout = () => {
     return (
         <Tabs
             screenOptions={{
@@ -102,4 +102,4 @@ const AdminLayout = () => {
     )
 }
 
-export default AdminLayout
+export default RootAdminLayout

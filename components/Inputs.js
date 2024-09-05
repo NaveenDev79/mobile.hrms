@@ -16,12 +16,12 @@ export const InputField = ({
                 {Icon}
             </View>
             <View className="">
-                <Text className='text-base font-medium'>{title}</Text>
+                <Text className='text-base  font-medium'>{title}</Text>
                 <TextInput
                     name={name}
                     readOnly={read}
                     placeholder={title}
-                    className="border-b-2 min-w-full text-base border-slate-300	"
+                    className="border-b-2 text-[#5C63D6] min-w-full text-base border-slate-300	"
                     onChangeText={(text) => onInputChange(name, text)}
                     value={value}/>
             </View>
@@ -63,10 +63,10 @@ export const FormInput = ({label, placeholder, value, type, onChange=()=>{}}) =>
     )
 }
 
-export const showSuccess = (onOkay) => {
+export const showSuccess = (message,onOkay) => {
     Alert.alert(
       "Submission Successful",
-      "Your form has been submitted successfully.",
+      message,
       [
         {
           text: "OK",

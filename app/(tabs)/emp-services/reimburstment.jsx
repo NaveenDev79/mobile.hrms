@@ -10,8 +10,7 @@ import {NavigateToBack} from '../../../components/Utils'
 const Reimburstment = () => {
 
     const router = useRouter();
-    function handleNavigate(id){
-        console.log(id);
+    function handleNavigate(id){ 
         router.push(
             {
                 pathname: `emp-services/${id}`,
@@ -19,10 +18,7 @@ const Reimburstment = () => {
                   id:id
                 }
              }
-        )
-        
-        
-
+        ) 
     }
     return (
         <TopLayout bg='#3399' title='' isTop={false}>

@@ -14,7 +14,7 @@ const TopLayout = ({
                 {isTop &&<View className='p-4 bg-[#FFFFFF]'>
                     <Text className='text-3xl  text-[#324467] font-bold'>{title}</Text>
                 </View>}
-                <View className={`flex-1 min-h-screen px-2 pt-4 pb-14  bg-[${bg}]`}>
+                <View className={`flex-1 min-h-screen px-2 pt-2 pb-14  bg-[${bg}]`}>
                     {children}
                 </View>
             </ScrollView>

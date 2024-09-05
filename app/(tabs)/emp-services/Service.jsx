@@ -1,6 +1,5 @@
-import {ScrollView, Text, View} from 'react-native';
-import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { View} from 'react-native';
+import React from 'react'; 
 import ServiceCard, { TempServiceCard } from '../../../components/employee/ServiceCard';
 import {images} from '../../../constants/index';
 import TopLayout from '../../../components/employee/TopLayout';

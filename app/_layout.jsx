@@ -25,12 +25,7 @@ const RootLayout = () => {
                 name='(admin)'
                 options={{
                 headerShown: false
-            }}/>
-            <Stack.Screen
-                name='(employee)'
-                options={{
-                headerShown: false
-            }}/>
+            }}/> 
 
         </Stack>
     </ProviderStore>  )

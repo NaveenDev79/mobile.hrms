@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { icons } from '../constants/index';
+import { View, Text, TouchableOpacity, Image } from 'react-native'; 
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -21,7 +20,7 @@ const LeaveComponent = ({ item }) => {
     };
 
     function handleTouch(){
-        router.push(`emp-approvals/leave/${item.id}`)
+        router.push(`emp-approvals/leave/${item?._id}`)
     }
 
     return (

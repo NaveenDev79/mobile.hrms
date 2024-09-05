@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native'
 import React from 'react'
-import {Stack} from 'expo-router'
+import {Slot, Stack} from 'expo-router'
 
 const Layout = () => {
     return (
@@ -10,15 +10,20 @@ const Layout = () => {
             headerShown: false
         }}>
             <Stack.Screen
-                name='employee'
+                name='home-emp'
                 options={{
                 headerShown: false
             }}/>
-            {/* <Stack.Screen
-                name='admin-payment'
+            <Stack.Screen
+                name='monthly-emp'
                 options={{
                 headerShown: false
-            }}/> */}
+            }}/>
+            <Stack.Screen
+                name='yearly-emp'
+                options={{
+                headerShown: false
+            }}/> 
         </Stack>
     )
 }
