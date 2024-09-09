@@ -54,8 +54,8 @@ const RegisterScreen = () => {
             key: "Employee",
             value: "Employee"
         }, {
-            key: "HR Admin",
-            value: "HR Admin"
+            key: "HR",
+            value: "HR"
         }, {
             key: "Admin",
             value: "Admin"
