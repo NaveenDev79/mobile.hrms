@@ -7,7 +7,7 @@ import {Redirect, useRouter} from 'expo-router';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-axios.defaults.baseURL = 'http://192.168.241.64:8080/api/v1';
+axios.defaults.baseURL = 'http://127.0.0.1:8080/api/v1';
 
 
 const Index = () => {
